@@ -1,0 +1,21 @@
+{
+    "name": "Base Board",
+    "short_name": "Base Board",
+    "description": "Base Board",
+    "icons": [
+        {
+            "src": "images/icon/logo.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "theme_color": "white",
+    "background_color": "#e5e5e5"
+}
