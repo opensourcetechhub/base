@@ -1,6 +1,7 @@
 // var tenantUrl;
 var configUrl;
 var dataUrl;
+var sectionUrl;
 
 // var tenant;
 var config;
@@ -35,11 +36,12 @@ function loadApp() {
         initFooter();
 
         dataUrl = config.data || dataUrl;
+        sectionUrl = config.section || sectorUrl;
 
         if(config.filter == 'Y') {
             //loadFilters(config.layout);
         } else {
-            loadData(dataUrl);
+            loadData(dataUrl, sectionUrl);
         }
         
     });

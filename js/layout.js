@@ -172,7 +172,7 @@ function initLayout() {
 
 		content += '<div class="row tab-pane fade '+ (section.state || '')+' show" id="nav-' + section.id + '" role="tabpanel" aria-labelledby="nav-' + section.id + '-tab">';
         content += '    <div class="nav-content-header col-lg-12">';
-        content += '        <h1 class="title-1 m-t-10 m-l-5 m-r-5">' + (section.desc || section.name || '') + '</h1>';
+        content += '        <h1 class="title-1 m-t-5 m-l-5 m-r-5">' + (section.desc || section.name || '') + '</h1>';
         content += '    </div>';
         content += '    <div class="row nav-content-body col-lg-12 p-r-0">';
         content += '    </div>';
@@ -202,13 +202,14 @@ function initLayout() {
             continue;
         }
         var size;
-        // if(widget.size) {
-        //     size = widget.size;
-        // }
-        if(config.nav == 'Y') {
-            // size = 4;
+        if(widget.size) {
+            size = widget.size;
         } else {
-            size = 3;
+            if(config.nav == 'Y') {
+                size = 4;
+            } else {
+                size = 3;
+            }
         }
 
         var widgetLayout = getWidgetLayout(widgetId, widget, size);

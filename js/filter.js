@@ -124,19 +124,19 @@ function onFilterChange(event) {
 
 }
 
-function loadData(dataUrl) {
-    // getUrlData(dataUrl, 1, function(result) {
-    //     sections = result.data;
-    //     sections = convertRowsToObj(sections);
+function loadData(dataUrl, sectionUrl) {
+    getUrlData('section', sectionUrl, function(key, result) {
+        sections = result;
+        sections = convertRowsToObj(sections);
         
-        sections = [ { id : 'default', state : 'active' } ];
+        //sections = [ { id : 'default', state : 'active' } ];
 
         getUrlData('data', dataUrl, function(key, result) {
             widgets = result;
             widgets = convertRowsToObj(widgets);
             onDataLoaded();
         });
-    // });
+    });
 }
 
 function clearData() {

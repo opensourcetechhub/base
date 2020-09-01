@@ -411,6 +411,17 @@ section {
     padding-bottom: 10px;
 }
 
+.nav-pills .nav-link, .nav-tabs .nav-link {
+    color: black;
+    text-transform: none;
+    border-radius: 25px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: whitesmoke;
+    background-color: black;
+}
+
 @media (max-width: 991px) {
     .main-content {
         #padding-top: 50px;
