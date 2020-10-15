@@ -192,9 +192,10 @@ function initLayout() {
         $('#nav-menu').empty();
         $('#nav-menu').append($(nav));
     }
-
-	$('#nav-content').empty();
+	
+    $('#nav-content').empty();
     $('#nav-content').append($(content));
+    $('.nav-content-body').each(function(i, el) { new PerfectScrollbar(el); })
     
     for(var widgetId in widgets) {
         var widget = widgets[widgetId];
