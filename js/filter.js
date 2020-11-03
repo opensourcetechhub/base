@@ -125,19 +125,30 @@ function onFilterChange(event) {
 }
 
 function loadData(dataUrl, sectionUrl) {
+	if(sectionUrl) {
     getUrlData('section', sectionUrl, function(key, result) {
         sections = result;
         sections = convertRowsToObj(sections);
-        
-        //sections = [ { id : 'default', state : 'active' } ];
+		initSections();
+    });
+	} else {
+		initSections();
+	}
+}
 
+function initSections() {
+	if(dataUrl) {
         getUrlData('data', dataUrl, function(key, result) {
             widgets = result;
             widgets = convertRowsToObj(widgets);
             onDataLoaded();
         });
-    });
+	} else {
+		onDataLoaded();
+	}
+	
 }
+
 
 function clearData() {
     $('.form-header .SECTION-filter').empty();

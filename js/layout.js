@@ -1,6 +1,7 @@
 // var navs;
 var sections;
 var widgets;
+var schemaform = {};
 
 var plotters = {};
 var layouts = {};
@@ -197,8 +198,8 @@ function initLayout() {
     $('#nav-content').append($(content));
     $('.nav-content-body').each(function(i, el) { new PerfectScrollbar(el); })
     
-    for(var widgetId in widgets) {
-        var widget = widgets[widgetId];
+    for(var widgetIndx in widgets) {
+        var widget = widgets[widgetIndx];
         if(!widget.section) {
             continue;
         }
@@ -213,9 +214,10 @@ function initLayout() {
             }
         }
 
-        var widgetLayout = getWidgetLayout(widgetId, widget, size);
+        var widgetLayout = getWidgetLayout(widget.id, widget, size);
         if(widgetLayout) {
             $('#nav-' + widget.section + ' .nav-content-body').append(widgetLayout);
+            plotWidget(widget.id, widget);
         }
     }
 
@@ -254,15 +256,15 @@ function getWidgetLayout(widgetId, widget, size) {
 function plotWidget(widgetId, widget) {
     var plotter = plotters[widget.type];
     if(plotter) {
-        eval(plotter)(widget);
+        eval(plotter)(widget.id, widget);
     } else {
         console.log('No plotter registered for type : ' + widget.type);
-    }
-    
+    }   
 }
 
 layouts['preview'] = 'getPreviewLayout';
 layouts['video'] = 'getPreviewLayout';
+layouts['jsonform'] = 'getJsonFormLayout';
 
 function getPreviewLayout(id, preview, size) {
 	var previewLayout = '';
@@ -297,6 +299,21 @@ function getPreviewLayout(id, preview, size) {
 
 	return previewLayout;	
 }
+
+function getJsonFormLayout(id, jsonForm, size) {
+	var embededLayout = '';
+	embededLayout += '<div class="col-lg-'+size+'">';
+	embededLayout += '	<form id="' + id + '-form"></form>';
+	embededLayout += '</div>';
+	return embededLayout;	
+}
+
+plotters['jsonform'] = 'plotJsonForm';
+
+function plotJsonForm(id, jsonForm) {
+	$('#' + id + '-form').jsonForm(schemaform[id]);
+}
+
 
 $('#modalDialog').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
