@@ -26,7 +26,7 @@ function getUrlData(key, url, callback) {
 	$.get({
 		url : url,
 		success : function( response ) {
-			callback(key, JSON.parse(response.data));
+			callback(key, response.data);
 		}
 	});
 }
